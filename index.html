@@ -73,29 +73,80 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center mb-5">
-                    <h2 class="section-title">About Me</h2>
-                    <div class="title-underline"></div>
-                </div>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="about-image">
-                        <img src="assets/image/profile.jpg" alt="Profile Photo" class="profile-img">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <h3 class="mb-4">Hello! Myself HarrieHaran B</h3>
-                    <p class="mb-3">I'm a passionate front-end developer creating digital solutions that make a difference. I specialize in building responsive web applications and user-friendly interfaces.</p>
-                    <p class="mb-4">My expertise focuses on front-end development, building responsive interfaces, and designing clean, user-centric web experiences. I'm always eager to learn new technologies and take on challenging projects.</p>
-                </div>
+<section id="about" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="section-title">About Me</h2>
+                <div class="title-underline"></div>
             </div>
         </div>
-    </section>
+        <div class="row align-items-center">
+            <div class="col-lg-5 mb-4 mb-lg-0">  <!-- Changed from col-lg-6 to col-lg-5 -->
+                <div class="code-editor">
+                    <div class="code-editor-header">
+                        <div class="code-dots">
+                            <span class="code-dot code-dot-red"></span>
+                            <span class="code-dot code-dot-yellow"></span>
+                            <span class="code-dot code-dot-green"></span>
+                        </div>
+                        <span class="code-editor-title">developer.py</span>
+                        <div class="code-editor-actions">
+                            <button class="code-btn code-btn-edit" id="editBtn" title="Edit Code">
+                                <i class="bi bi-pencil"></i> Edit
+                            </button>
+                            <button class="code-btn code-btn-run" id="runBtn" title="Run Code">
+                                <i class="bi bi-play-fill"></i> Run
+                            </button>
+                        </div>
+                    </div>
+                    <div class="code-editor-body">
+                        <pre id="codeDisplay"><code><span class="hl-comment"># About Me</span>
 
+<span class="hl-keyword">class</span> <span class="hl-function">Developer</span>:
+    <span class="hl-keyword">def</span> <span class="hl-function">__init__</span>(<span class="hl-keyword">self</span>):
+        <span class="hl-keyword">self</span>.<span class="hl-property">name</span> = <span class="hl-string">'HarrieHaran B'</span>
+        <span class="hl-keyword">self</span>.<span class="hl-property">role</span> = <span class="hl-string">'Full Stack Developer'</span>
+        <span class="hl-keyword">self</span>.<span class="hl-property">skills</span> = [<span class="hl-string">'Python'</span>, <span class="hl-string">'JavaScript'</span>, <span class="hl-string">'React'</span>]
+    
+    <span class="hl-keyword">def</span> <span class="hl-function">work</span>(<span class="hl-keyword">self</span>):
+        <span class="hl-keyword">return</span> <span class="hl-string">'Building amazing web apps'</span>
+
+<span class="hl-comment"># Create instance</span>
+dev = <span class="hl-function">Developer</span>()
+<span class="hl-function">print</span>(dev.<span class="hl-property">name</span>)
+<span class="hl-function">print</span>(dev.<span class="hl-function">work</span>())</code></pre>
+                        <textarea id="codeInput" class="code-textarea" style="display: none;"># About Me
+
+class Developer:
+    def __init__(self):
+        self.name = 'HarrieHaran B'
+        self.role = 'Full Stack Developer'
+        self.skills = ['Python', 'JavaScript', 'Bootstrap']
+    
+    def work(self):
+        return 'Building amazing web apps'
+
+# Create instance
+dev = Developer()
+print(dev.name)
+print(dev.role)</textarea>
+                        <div id="codeOutput" class="code-output" style="display: none;">
+                            <div class="code-output-header">Output:</div>
+                            <div class="code-output-content" id="outputContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="mb-4">Hello! Myself HarrieHaran B</h3>
+                <p class="mb-3">I'm a passionate full-stack developer creating digital solutions that make a difference. I specialize in building responsive web applications and user-friendly interfaces.</p>
+                <p class="mb-4">My expertise focuses on front-end development, building responsive interfaces, and designing clean, user-centric web experiences. I'm always eager to learn new technologies and take on challenging projects.</p>
+            </div>
+        </div>
+    </div>
+</section>
+    
     <!-- Skills Section -->
 <section id="skills" class="py-5 bg-light">
     <div class="container">
@@ -347,6 +398,7 @@
 </body>
 
 </html>
+
 
 
 
