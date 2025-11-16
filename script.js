@@ -228,4 +228,138 @@ function throttle(func, limit) {
             setTimeout(() => inThrottle = false, limit);
         }
     };
+
 }
+
+// ============================================
+// Interactive Code Editor Functionality
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const editBtn = document.getElementById('editBtn');
+    const runBtn = document.getElementById('runBtn');
+    const codeDisplay = document.getElementById('codeDisplay');
+    const codeInput = document.getElementById('codeInput');
+    const codeOutput = document.getElementById('codeOutput');
+    const outputContent = document.getElementById('outputContent');
+    
+    let isEditing = false;
+    
+    // Default code content
+    const defaultCode = `# About Me
+
+class Developer:
+    def __init__(self):
+        self.name = 'HarrieHaran B'
+        self.role = 'Full Stack Developer'
+        self.skills = ['Python', 'JavaScript', 'React']
+    
+    def work(self):
+        return 'Building amazing web apps'
+
+# Create instance
+dev = Developer()
+print(dev.name)
+print(dev.work())`;
+    
+    // Edit button functionality
+    if (editBtn) {
+        editBtn.addEventListener('click', function() {
+            if (!isEditing) {
+                // Switch to edit mode
+                isEditing = true;
+                codeDisplay.style.display = 'none';
+                codeInput.style.display = 'block';
+                codeOutput.style.display = 'none';
+                codeInput.value = codeInput.value || defaultCode;
+                codeInput.focus();
+                editBtn.innerHTML = '<i class="bi bi-check"></i> Save';
+                editBtn.classList.add('code-btn-save');
+            } else {
+                // Save and switch back to view mode
+                isEditing = false;
+                codeDisplay.style.display = 'block';
+                codeInput.style.display = 'none';
+                // Update the display (you could add syntax highlighting here)
+                codeDisplay.textContent = codeInput.value;
+                editBtn.innerHTML = '<i class="bi bi-pencil"></i> Edit';
+                editBtn.classList.remove('code-btn-save');
+            }
+        });
+    }
+    
+    // Run button functionality
+    if (runBtn) {
+        runBtn.addEventListener('click', function() {
+            const code = codeInput.value || defaultCode;
+            
+            // Show output
+            codeOutput.style.display = 'block';
+            
+            // Simulate Python execution (mock output)
+            // In a real implementation, you could use Pyodide to run actual Python
+            const mockOutput = simulatePythonExecution(code);
+            outputContent.textContent = mockOutput;
+            
+            // Add running animation
+            runBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Running...';
+            runBtn.disabled = true;
+            
+            setTimeout(() => {
+                runBtn.innerHTML = '<i class="bi bi-play-fill"></i> Run';
+                runBtn.disabled = false;
+            }, 1000);
+        });
+    }
+    
+    // Function to simulate Python execution
+    function simulatePythonExecution(code) {
+        // Extract print statements and simulate output
+        const printMatches = code.match(/print\([^)]+\)/g);
+        let output = '';
+        
+        if (printMatches) {
+            printMatches.forEach(printStmt => {
+                // Extract content inside print()
+                const content = printStmt.match(/print\((.+)\)/);
+                if (content) {
+                    const value = content[1].trim();
+                    
+                    // Simple simulation
+                    if (value.includes('dev.name')) {
+                        output += 'HarrieHaran B\n';
+                    } else if (value.includes('dev.work()')) {
+                        output += 'Building amazing web apps\n';
+                    } else if (value.includes('dev.role')) {
+                        output += 'Full Stack Developer\n';
+                    } else if (value.includes('dev.skills')) {
+                        output += "['Python', 'JavaScript', 'React']\n";
+                    } else {
+                        // Try to evaluate simple expressions
+                        try {
+                            const cleanValue = value.replace(/['"]/g, '');
+                            output += cleanValue + '\n';
+                        } catch (e) {
+                            output += value + '\n';
+                        }
+                    }
+                }
+            });
+        }
+        
+        return output || 'Code executed successfully!';
+    }
+    
+    // Allow Enter key in textarea (but not submit)
+    if (codeInput) {
+        codeInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+        });
+    }
+});
