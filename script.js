@@ -251,8 +251,8 @@ document.addEventListener('DOMContentLoaded', function() {
 class Developer:
     def __init__(self):
         self.name = 'HarrieHaran B'
-        self.role = 'Full Stack Developer'
-        self.skills = ['Python', 'JavaScript', 'React']
+        self.role = 'Front-end Developer'
+        self.skills = ['Python', 'JavaScript', 'BootStrap']
     
     def work(self):
         return 'Building amazing web apps'
@@ -331,9 +331,9 @@ print(dev.work())`;
                     } else if (value.includes('dev.work()')) {
                         output += 'Building amazing web apps\n';
                     } else if (value.includes('dev.role')) {
-                        output += 'Full Stack Developer\n';
+                        output += 'Front-end Developer\n';
                     } else if (value.includes('dev.skills')) {
-                        output += "['Python', 'JavaScript', 'React']\n";
+                        output += "['Python', 'JavaScript', 'BootStrap']\n";
                     } else {
                         // Try to evaluate simple expressions
                         try {
@@ -363,3 +363,4 @@ print(dev.work())`;
         });
     }
 });
+
