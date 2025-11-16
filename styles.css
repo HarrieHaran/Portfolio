@@ -242,7 +242,238 @@ section {
 /* ============================================
    Skills Section
    ============================================ */
+.code-editor {
+    background: linear-gradient(135deg, #2d1b3d 0%, #1a0f2e 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.25);
+    font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+    max-width: 380px; /* Reduced width */
+    width: 100%;
+    margin: 0 auto 0 0; /* Aligns to left, creates space on right */
+    border: 2px solid rgba(235, 204, 234, 0.2);
+    transition: var(--transition);
+}
 
+/* ... rest of your existing code editor styles ... */
+
+.code-editor:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(118, 75, 162, 0.35);
+    border-color: rgba(235, 204, 234, 0.3);
+}
+
+.code-editor-header {
+    background: rgba(33, 37, 41, 0.8);
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 1px solid rgba(235, 204, 234, 0.15);
+}
+
+.code-dots {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.code-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.code-dot-red {
+    background: #ff5f56;
+}
+
+.code-dot-yellow {
+    background: #ffbd2e;
+}
+
+.code-dot-green {
+    background: #27c93f;
+}
+
+.code-editor-title {
+    color: var(--primary-color);
+    font-size: 0.7rem;
+    font-weight: 500;
+    opacity: 0.9;
+    flex-grow: 1;
+}
+
+.code-editor-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.code-btn {
+    background: rgba(235, 204, 234, 0.15);
+    border: 1px solid rgba(235, 204, 234, 0.3);
+    color: var(--primary-color);
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.code-btn:hover {
+    background: rgba(235, 204, 234, 0.25);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.code-btn-run {
+    background: linear-gradient(135deg, var(--primary-color), #764ba2);
+    color: white;
+    border: none;
+}
+
+.code-btn-run:hover {
+    background: linear-gradient(135deg, #764ba2, var(--primary-color));
+    color: white;
+}
+
+.code-btn i {
+    font-size: 0.75rem;
+}
+
+.code-editor-body {
+    padding: 12px 15px;
+    background: transparent;
+    overflow-x: auto;
+    position: relative;
+}
+
+.code-editor-body pre {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: #e0d0e0;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    overflow-x: auto;
+}
+
+.code-editor-body code {
+    font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+    color: #e0d0e0;
+    background: transparent;
+    padding: 0;
+    border: none;
+    white-space: pre;
+}
+
+.code-textarea {
+    width: 100%;
+    min-height: 200px;
+    background: transparent;
+    border: none;
+    color: #e0d0e0;
+    font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    resize: vertical;
+    padding: 0;
+    outline: none;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+.code-output {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.code-output-header {
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.code-output-content {
+    color: #d4a5e8;
+    font-size: 0.8rem;
+    font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+/* Syntax Highlighting Colors - Python Theme */
+.code-editor-body code .hl-comment,
+.code-editor-body code span.hl-comment {
+    color: #9d7fb8;
+    font-style: italic;
+}
+
+.code-editor-body code .hl-keyword,
+.code-editor-body code span.hl-keyword {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.code-editor-body code .hl-string,
+.code-editor-body code span.hl-string {
+    color: #d4a5e8;
+}
+
+.code-editor-body code .hl-function,
+.code-editor-body code span.hl-function {
+    color: #c8a2d4;
+}
+
+.code-editor-body code .hl-property,
+.code-editor-body code span.hl-property {
+    color: #e0d0e0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .code-editor-body {
+        padding: 10px 12px;
+    }
+    
+    .code-editor-body pre,
+    .code-textarea {
+        font-size: 0.7rem;
+        line-height: 1.3;
+    }
+    
+    .code-editor-header {
+        padding: 5px 8px;
+        flex-wrap: wrap;
+    }
+    
+    .code-btn {
+        padding: 3px 8px;
+        font-size: 0.65rem;
+    }
+    
+    .code-dot {
+        width: 7px;
+        height: 7px;
+    }
+    
+    .code-editor-title {
+        font-size: 0.65rem;
+    }
+}
 #skills {
     background: white;
 }
@@ -612,4 +843,5 @@ footer {
     background: white;
     color: var(--primary-color);
     transform: translateY(-2px);
+
 }
